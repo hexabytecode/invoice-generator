@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Added CORS settings for local dev
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -13,8 +14,16 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware to parse JSON data
+app.use(express.json());
+
 // API routes
 app.post("/api/invoice", (req, res) => {
+  /**
+   * I want to change the word 'TAX INVOICE' to 'UFFU'
+   * Find in the docx file, change the word, return the confirmation
+   */
+  console.log(req.body);
   res.json({ message: "Invoice created successfully" });
 });
 

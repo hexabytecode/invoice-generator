@@ -8,9 +8,15 @@ class CreateInvoiceData {
   }
 }
 
-async function createInvoice() {
+async function createInvoice(formData) {
   try {
-    const response = await fetch(`${config.BACKEND_URL}/hello`);
+    const response = await fetch(`${config.BACKEND_URL}/api/invoice`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
     if (!response.ok) {
       throw new Error(`Response failed with status - ${response.status}`);
     }
@@ -29,9 +35,7 @@ function handleSubmit(event) {
     formInput.address.value,
     formInput.email.value
   );
-  console.log(formData);
-
-  createInvoice();
+  createInvoice(formData);
 }
 
 document

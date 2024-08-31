@@ -10,7 +10,7 @@ class CreateInvoiceData {
 
 async function createInvoice() {
   try {
-    const response = await fetch(config.BACKEND_URL);
+    const response = await fetch(`${config.BACKEND_URL}/hello`);
     if (!response.ok) {
       throw new Error(`Response failed with status - ${response.status}`);
     }
@@ -36,4 +36,4 @@ function handleSubmit(event) {
 
 document
   .getElementById("createInvoiceForm")
-  .addEventListener("submit", handleSubmit)();
+  .addEventListener("submit", handleSubmit);
